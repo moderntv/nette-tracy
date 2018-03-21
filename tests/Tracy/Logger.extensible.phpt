@@ -18,7 +18,7 @@ class CustomLogger extends Logger
 	public $collector = [];
 
 
-	public function log($value, $priority = self::INFO): ?string
+	public function log($value, string $priority = self::INFO): ?string
 	{
 		$exceptionFile = $value instanceof \Exception
 			? $this->logException($value)
