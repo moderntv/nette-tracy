@@ -472,7 +472,8 @@
 				oldOpen.apply(this, arguments);
 				if (window.TracyAutoRefresh !== false && new URL(arguments[1], location.origin).host === location.host) {
 					let reqId = header + '_' + ajaxCounter++;
-					this.setRequestHeader('X-Tracy-Ajax', reqId);
+					// TODO: fix compatibility problems
+					// this.setRequestHeader('X-Tracy-Ajax', reqId);
 					this.addEventListener('load', function() {
 						if (this.getAllResponseHeaders().match(/^X-Tracy-Ajax: 1/mi)) {
 							Debug.loadScript(baseUrl + '_tracy_bar=content-ajax.' + reqId + '&XDEBUG_SESSION_STOP=1&v=' + Math.random());
@@ -487,7 +488,8 @@
 
 				if (window.TracyAutoRefresh !== false && new URL(request.url, location.origin).host === location.host) {
 					let reqId = header + '_' + ajaxCounter++;
-					request.headers.set('X-Tracy-Ajax', reqId);
+					// TODO: fix compatibility problems
+					// request.headers.set('X-Tracy-Ajax', reqId);
 					return oldFetch(request).then((response) => {
 						if (response instanceof Response && response.headers.has('X-Tracy-Ajax') && response.headers.get('X-Tracy-Ajax')[0] === '1') {
 							Debug.loadScript(baseUrl + '_tracy_bar=content-ajax.' + reqId + '&XDEBUG_SESSION_STOP=1&v=' + Math.random());
