@@ -181,9 +181,10 @@ class Bar
 
 		$this->useSession = session_status() === PHP_SESSION_ACTIVE;
 
-		if ($this->useSession && Helpers::isAjax()) {
-			header('X-Tracy-Ajax: 1'); // session must be already locked
-		}
+//      TODO: fix compatibility problems
+//		if ($this->useSession && Helpers::isAjax()) {
+//			header('X-Tracy-Ajax: 1'); // session must be already locked
+//		}
 
 		if ($this->useSession && $asset && preg_match('#^content(-ajax)?\.(\w+)$#', $asset, $m)) {
 			$session = &$_SESSION['_tracy']['bar'][$m[2]];
